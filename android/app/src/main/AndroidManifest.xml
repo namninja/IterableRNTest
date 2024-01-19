@@ -20,6 +20,17 @@
             <action android:name="android.intent.action.MAIN" />
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
+          <intent-filter>
+              <action android:name="android.intent.action.VIEW" />
+              <category android:name="android.intent.category.DEFAULT" />
+              <category android:name="android.intent.category.BROWSABLE" />
+              <!-- NOTE: Deep links from Iterable will have your link tracking domain, followed by /a/ -->
+              <!-- NOTE: for pathPrefix, the leading "/" is required -->
+              <data
+                  android:host="l.reiterablecoffee.com"
+                  android:pathPrefix="/a/"
+                  android:scheme="https" />
+          </intent-filter>
       </activity>
     </application>
 </manifest>

@@ -1,6 +1,7 @@
 import {StyleSheet, SafeAreaView, Linking} from 'react-native';
 import React, {useState, useEffect} from 'react';
 import {
+  IterableLogLevel,
   Iterable,
   IterableConfig,
   IterableInAppMessage,
@@ -46,15 +47,28 @@ function App(): JSX.Element {
     }
     // ITERABLE:
     const config = new IterableConfig();
+    config.logLevel = IterableLogLevel.info;
     config.inAppHandler = (message: IterableInAppMessage) => {
       console.log(message);
       return IterableInAppShowResponse.show;
     };
+    config.customActionHandler = (action, context) => {
+      console.log('customActionHandler');
+      console.log(action);
+      console.log(context);
+      if (action.type) {
+        // For this action, update the app's styles
+
+        return true;
+      }
+      return false;
+    };
     config.urlHandler = urlHandler;
+    config.logLevel = IterableLogLevel.debug;
     config.autoPushRegistration = true;
-    console.log(config);
-    Iterable.initialize(iterableAPIKey, config);
-    //
+    Iterable.initialize(iterableAPIKey, config).then(success => {
+      console.log('Initialization Complete');
+    });
   });
 
   return (
@@ -66,14 +80,5 @@ function App(): JSX.Element {
     </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  rootScreen: {
-    flex: 1,
-  },
-  backgroundImage: {
-    opacity: 0.15,
-  },
-});
 
 export default App;

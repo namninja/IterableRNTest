@@ -6,7 +6,7 @@ import {
   KeyboardAvoidingView,
   ScrollView,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import PrimaryButton from '../components/PrimaryButton';
 import Title from '../components/Title';
 import Card from '../components/Card';
@@ -16,8 +16,10 @@ import {Iterable, IterableConfig} from '@iterable/react-native-sdk';
 import PizzaScreen from './PizzaScreen';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {userEmail, phoneNumber} from '../Config';
 
 function MainScreen({navigation}) {
+  useEffect(() => {});
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   function updateUser() {
@@ -28,9 +30,9 @@ function MainScreen({navigation}) {
         firstName: 'Joan',
         lastName: 'Jett',
         favoriteDrink: 'latte',
-        phoneNumber: '+18582294679',
+        phoneNumber: phoneNumber,
         timeZone: 'America/Los_Angeles',
-        email: 'mob@mobile.com',
+        email: userEmail,
       },
       false,
     );
@@ -38,6 +40,7 @@ function MainScreen({navigation}) {
 
   function triggerEvent() {
     console.log('custom_event');
+    Iterable.getLastPushPayload().then(payload => console.log(payload));
     Iterable.trackEvent('atePizza', {
       likesToDance: true,
       likesToPaint: true,
@@ -45,7 +48,8 @@ function MainScreen({navigation}) {
   }
   function userLogin() {
     console.log('user_login');
-    Iterable.setEmail('nam.ngo+react1@iterable.com');
+    Iterable.setEmail(userEmail);
+    Iterable.getLastPushPayload().then(res => console.log(res));
     setIsLoggedIn(false);
   }
   function userLogout() {

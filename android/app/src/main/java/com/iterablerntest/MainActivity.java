@@ -2,9 +2,15 @@ package com.iterablerntest;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
+import com.facebook.react.ReactPackage;
 import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint;
 import com.facebook.react.defaults.DefaultReactActivityDelegate;
+import com.facebook.react.shell.MainReactPackage;
 
+import java.util.Arrays;
+import java.util.List;
+
+import in.sriraman.sharedpreferences.RNSharedPreferencesReactPackage;
 public class MainActivity extends ReactActivity {
 
   /**
@@ -32,4 +38,5 @@ public class MainActivity extends ReactActivity {
         DefaultNewArchitectureEntryPoint.getConcurrentReactEnabled() // concurrentRootEnabled
         );
   }
+
 }
