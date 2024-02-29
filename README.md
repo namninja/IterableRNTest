@@ -41,6 +41,13 @@ Run the following command to install the project dependencies:</br>
 6. View the App:</br>
 -After successfully running the above commands, the app should open on the simulator/emulator.</br>
 </br></br>
-
+7. If you run into errors running the app in iOS, you may need to do the following within XCode:
+</br>
+-Click on Pods in the Project Navigator and open Build Settings
+-Select Iterable-React-Native-SDK
+-Search for "Require Only App-Extension-Safe API" and change the requirement to "No"
+-Next, select "RNScreens" and change "Require Only App-Extension-Safe API" and change the requirement to "No"
+</br></br>
+</br></br>
 Other good references:</br>
 -https://reactnative.dev/docs/environment-setup</br>
